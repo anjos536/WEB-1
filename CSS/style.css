@@ -1,0 +1,60 @@
+/* 1. Mudando a cor de fundo e a fonte de toda a página */
+body {
+    background-color: lightblue; /* Fundo azul claro */
+    font-family: Arial, sans-serif; /* Tipo de fonte */
+    margin: 20px; /* Espaço ao redor da página */
+}
+
+/* 2. Estilizando o Cabeçalho */
+header {
+    background-color: rgb(255, 255, 255); /* Fundo azul marinho */
+    color: rgb(96, 67, 67); /* Letra branca */
+    padding: 20px; /* Espaço interno */
+    text-align: center; /* Texto no meio */
+}
+
+/* 3. Estilizando Títulos */
+h1, h2 {
+    color: darkblue; /* Cor do texto dos títulos */
+}
+
+/* 4. Classe para mudar cor de parágrafo específico */
+.texto-colorido {
+    color: blue;
+    font-weight: bold; /* Negrito */
+}
+
+/* 5. A tal da "Box Model" (Margem, Borda e Padding) - Obrigatório */
+.caixa {
+    background-color: white;
+    border: 3px solid red; /* Borda vermelha grossa */
+    padding: 20px; /* Espaço dentro da caixa */
+    margin-bottom: 20px; /* Espaço fora da caixa */
+}
+
+/* 6. Estilizando Listas */
+ul {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+/* 7. Estilizando Tabelas */
+table {
+    width: 100%; /* Ocupa a largura toda */
+    background-color: white;
+    text-align: center;
+}
+
+/* 8. Estilizando Links */
+a {
+    color: red; /* Link vermelho */
+    text-decoration: none; /* Tira o sublinhado */
+    font-size: 20px;
+}
+
+/* Muda a cor quando passa o mouse */
+a:hover {
+    color: black;
+    text-decoration: underline;
+}
