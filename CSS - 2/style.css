@@ -1,0 +1,207 @@
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* --- A. CABEÇALHO --- */
+header {
+    background-color: #1a1a1a; /* Banner escuro */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 5px solid #e50914; /* Detalhe vermelho tipo Netflix */
+}
+
+/* h1 com cor RGB e Text-Shadow (Sombra) */
+header h1 {
+    color: rgb(229, 9, 20); /* Vermelho RGB */
+    font-size: 3em;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* Sombra no texto */
+    margin-bottom: 10px;
+}
+
+/* h2 em itálico */
+header h2 {
+    font-style: italic;
+    font-weight: 300;
+    color: #ccc;
+}
+
+/* Navegação */
+nav {
+    margin-top: 20px;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #e50914; /* Efeito Hover */
+}
+
+/* --- ESTILOS GERAIS DE SEÇÃO --- */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h3 {
+    border-left: 5px solid #e50914;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #222;
+}
+
+/* --- B. DESTAQUE DA SEMANA --- */
+.card-destaque {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px;
+    display: flex; /* Coloca imagem e texto lado a lado */
+    gap: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.info-destaque h4 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.generos {
+    margin-top: 15px;
+    list-style-type: square; /* Estilo da lista */
+    padding-left: 20px;
+}
+
+/* --- C. GRADE DE FILMES (CATÁLOGO) --- */
+.grade-filmes {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha */
+    gap: 20px;
+    justify-content: center;
+}
+
+.filme-card {
+    background-color: white; /* Fundo diferente do body */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.filme-card:hover {
+    transform: scale(1.05); /* Zoom leve ao passar o mouse */
+    border-color: #e50914;
+}
+
+.filme-card img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.filme-card a {
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #eee;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+/* --- D. TABELA --- */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Bordas unidas */
+    margin-top: 10px;
+    background-color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #222; /* Cabeçalho escuro */
+    color: white;
+}
+
+/* Linhas alternadas (Zebra) */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* --- F. SEÇÃO SOBRE (FLOAT) --- */
+.conteudo-sobre {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Imagem flutuando à direita */
+.img-float {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    border-radius: 50%; /* Imagem redonda */
+    border: 3px solid #e50914;
+}
+
+/* Links Sociais */
+.social-links a {
+    color: #e50914;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+    color: #b20710;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #777;
+    margin-top: 40px;
+}
