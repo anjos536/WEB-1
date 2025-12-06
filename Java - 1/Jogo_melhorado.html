@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adivinhe o Número</title>
+<style>
+    * {
+        box-sizing: border-box; /* Margens */
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f8d7a6, #f3b36a);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #333;
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 2.2em;
+        color: #4b2e05;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        margin-bottom: 10px;
+    }
+    /*caixa principal do game*/
+
+    .game-box {
+        background-color: #fff5e1;
+        padding: 25px 35px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        text-align: center;
+        width: 320px;
+        transition: transform 0.3s ease;
+    }
+
+    .game-box:hover {
+        transform: scale(1.02);
+    }
+/*botoes e entrada*/
+    button {
+        background: #ff8c00;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+        background: #e67e00;
+        transform: translateY(-2px);
+    }
+
+    input[type=number] {
+        width: 120px;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 2px solid #ffa94d;
+        text-align: center;
+    }
+/*barra de contar vidas */
+    #vidas-container {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    #barraVidas {
+        width: 100%;
+        height: 15px;
+        background-color: #ddd;
+        border-radius: 10px;
+        margin-top: 5px;
+        overflow: hidden;
+    }
+
+    #barraRestante {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, #00c853, #aeea00); /*barra verde inicial*/
+        transition: width 0.5s ease;
+    }
+/*historico e mensagem*/
+    #mensagem {
+        margin-top: 15px;
+        font-size: 17px;
+        font-weight: 500;
+        min-height: 22px;
+    }
+
+    #historico {
+        margin-top: 15px;
+        background-color: #fffaf0;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: left;
+        font-size: 14px;
+        max-height: 130px;
+        overflow-y: auto;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    }
+</style>
+</head>
+<body>
+
+<h1>🎯 Adivinhe o Número</h1>
+<!--conteudo central-->
+<div class="game-box">
+    <!--iniciar jogo-->
+    <p>Número secreto entre 1 e 100</p>
+    <button id="iniciar">🎲 Iniciar Jogo</button><br>
+    <!--palpite-->
+    <label for="palpite"><strong>Seu palpite:</strong></label><br>
+    <input type="number" id="palpite" min="1" max="100" disabled>
+    <button id="chutar" disabled>Chutar</button>
+<!--monstrar vidas-->
+    <div id="vidas-container">
+        ❤️ Vidas restantes: <span id="vidasRestantes">10</span>
+        <div id="barraVidas"><div id="barraRestante"></div></div>
+    </div>
+<!--mensagem de acerto ou erro-->
+    <div id="mensagem"></div>
+
+    <div id="historico"><strong>Histórico de Palpites:</strong><br></div>
+</div>
+
+<script>
+let numeroSecreto;
+let tentativas = 0;
+let maxTentativas = 10;
+let historicoDiv = document.getElementById("historico");
+let vidasTexto = document.getElementById("vidasRestantes");
+let barraRestante = document.getElementById("barraRestante");
+let mensagem = document.getElementById("mensagem");
+
+const inputPalpite = document.getElementById("palpite");
+const btnChutar = document.getElementById("chutar");
+const btnIniciar = document.getElementById("iniciar");
+
+btnIniciar.addEventListener("click", iniciarJogo);
+btnChutar.addEventListener("click", fazerPalpite);
+//funçao que inicia o game//
+function iniciarJogo() {
+    numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    tentativas = 0;
+    vidasTexto.textContent = maxTentativas;
+    barraRestante.style.width = "100%";
+    barraRestante.style.background = "linear-gradient(90deg, #00c853, #aeea00)";
+    historicoDiv.innerHTML = "<strong>Histórico de Palpites:</strong><br>";
+    mensagem.textContent = "Boa sorte! Faça seu primeiro palpite.";
+    inputPalpite.disabled = false;
+    btnChutar.disabled = false;
+    inputPalpite.focus();
+}
+//faz palpite//
+function fazerPalpite() {
+    if (!numeroSecreto) return;//n comecou n faz nd//
+
+    let palpite = Number(inputPalpite.value);//numero digitade//
+    if (palpite < 1 || palpite > 100) {
+        mensagem.textContent = "⚠️ Digite um número entre 1 e 100!";
+        return;
+    }
+//Aumenta o número de tentativas e calcula vidas restantes
+    tentativas++;
+    let vidasRestantes = maxTentativas - tentativas;
+    vidasTexto.textContent = vidasRestantes;
+    // Ajusta o tamanho da barra proporcional às vidas
+    barraRestante.style.width = (vidasRestantes / maxTentativas * 100) + "%";
+
+    // Cor da barra muda conforme vidas
+    if (vidasRestantes <= 3) barraRestante.style.background = "linear-gradient(90deg, #ff1744, #ff8a80)";
+    else if (vidasRestantes <= 6) barraRestante.style.background = "linear-gradient(90deg, #ff9100, #ffd740)";
+
+    // VERIFICA O PALPITE
+    if (palpite === numeroSecreto) {
+        mensagem.textContent = `🎉 Parabéns! Você acertou o número ${numeroSecreto}!`;
+        historicoDiv.innerHTML += `✅ Palpite ${tentativas}: ${palpite} - Acertou!<br>`;
+        encerrarJogo(true);
+    } else if (tentativas >= maxTentativas) {
+        mensagem.textContent = `😞 Fim de jogo! O número era ${numeroSecreto}.`;
+        historicoDiv.innerHTML += `❌ Palpite ${tentativas}: ${palpite} - Errou!<br>`;
+        encerrarJogo(false);
+    } else if (palpite < numeroSecreto) {
+        mensagem.textContent = "⬆️ O número secreto é MAIOR!";
+        historicoDiv.innerHTML += `Palpite ${tentativas}: ${palpite} - O número é maior!<br>`;
+    } else {
+        mensagem.textContent = "⬇️ O número secreto é MENOR!";
+        historicoDiv.innerHTML += `Palpite ${tentativas}: ${palpite} - O número é menor!<br>`;
+    }
+  // Limpa o campo de entrada e coloca o cursor novamente
+    inputPalpite.value = "";
+    inputPalpite.focus();
+}
+// FUNÇÃO: ENCERRAR O JOGO
+function encerrarJogo(venceu) {
+    inputPalpite.disabled = true;   // Desativa campo de número
+    btnChutar.disabled = true;      // Desativa botão de chute
+    if (venceu) {
+        // Se acertou, barra fica verde
+        barraRestante.style.background = "linear-gradient(90deg, #00e676, #b2ff59)";
+    } else {
+        // Se perdeu, barra zera e fica vermelha
+        barraRestante.style.background = "linear-gradient(90deg, #d50000, #ff5252)";
+        barraRestante.style.width = "0%";
+        vidasTexto.textContent = 0;
+    }
+ // Remove o número secreto para impedir novos palpites
+    numeroSecreto = null;
+}
+</script>
+
+</body>
+</html>

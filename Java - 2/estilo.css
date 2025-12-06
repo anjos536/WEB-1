@@ -1,0 +1,156 @@
+/* --- RESET BÁSICO --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Fundo gradiente moderno */
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- CABEÇALHO --- */
+header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Fredoka', sans-serif; /* Fonte arredondada divertida */
+    color: #fff;
+    font-size: 3rem;
+    text-shadow: 2px 2px 0px #4a69bd; /* Sombra dura para efeito cartoon */
+    letter-spacing: 2px;
+}
+
+/* --- ÁREA PRINCIPAL DO JOGO (Cartão Branco) --- */
+section {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 600px; /* Largura máxima para não esticar demais */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- IMAGEM DO BONECO --- */
+#box-imagem {
+    height: 250px; /* Altura fixa para o layout não pular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#img-menino {
+    max-height: 100%;
+    max-width: 100%;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+}
+
+/* --- BOTÃO INICIAR (Imagem) --- */
+#box-iniciar {
+    margin-bottom: 20px;
+}
+
+#btn_iniciar {
+    cursor: pointer;
+    width: 150px;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+#btn_iniciar:hover {
+    transform: scale(1.05); /* Aumenta um pouquinho ao passar o mouse */
+    filter: brightness(1.1); /* Fica mais brilhante */
+}
+
+#btn_iniciar:active {
+    transform: scale(0.95); /* Efeito de clique */
+}
+
+/* --- A PALAVRA SECRETA --- */
+#box-palavra {
+    background-color: #f0f2f5;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px dashed #bdc3c7;
+}
+
+#palavra {
+    font-family: 'Fredoka', monospace;
+    font-size: 2rem;
+    letter-spacing: 10px; /* Espaço entre as letras */
+    font-weight: 600;
+    color: #2c3e50;
+    min-height: 40px; /* Para não sumir quando vazio */
+}
+
+/* --- O TECLADO VIRTUAL --- */
+#box-teclado {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha */
+    justify-content: center;
+    gap: 8px; /* Espaço entre os botões */
+    margin-top: 10px;
+}
+
+/* Estilo dos botões gerados pelo Javascript */
+#box-teclado button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background-color: #fff;
+    color: #4a69bd;
+    border: 2px solid #4a69bd;
+    border-radius: 8px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 #3c5aa8; /* Efeito 3D na borda inferior */
+}
+
+/* Efeito ao passar o mouse nas letras */
+#box-teclado button:hover:not(:disabled) {
+    background-color: #4a69bd;
+    color: #fff;
+    transform: translateY(-2px); /* Sobe um pouquinho */
+    box-shadow: 0 6px 0 #2a407a;
+}
+
+/* Efeito ao clicar */
+#box-teclado button:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 0 0;
+}
+
+/* Botão desativado (letra já usada) */
+#box-teclado button:disabled {
+    background-color: #ecf0f1;
+    color: #bdc3c7;
+    border-color: #bdc3c7;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- RODAPÉ --- */
+footer {
+    margin-top: 30px;
+    color: rgba(255,255,255, 0.8);
+    font-size: 0.9rem;
+}
